@@ -14,6 +14,9 @@ int main(int argc, char **args)
 	FILE *fi, *fo;
 	int num;
 	int i;
+	
+	int longest_name_len = 0;
+	char format[80];
 
 	student* students;
 	input_path = args[1];
@@ -27,10 +30,14 @@ int main(int argc, char **args)
 		students[a].name = (char*)malloc(31 * sizeof(char));
 		students[a].major = (char*)malloc(31 * sizeof(char));
 		fscanf(fi, "%s %d %s", students[a].name, &students[a].student_id, students[a].major);
+		if (longest_name_len < strlen(students[a].name)) 
+			longest_name_len = strlen(students[a].name);
+		
 	}
-
+	sprintf(format,"%%-%ds", longest_name_len); 
 	for (int a = 0; a < i; a++) {
-		fprintf(fo, "%-31s %-15d %-31s\n", students[a].name, students[a].student_id, students[a].major);
+		fprintf(fo, format, students[a].name);
+		fprintf(fo, " %-10d	%-31s\n", students[a].student_id, students[a].major);
 		free(students[a].name);
 		free(students[a].major);
 	}
