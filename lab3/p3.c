@@ -15,7 +15,7 @@ List MakeEmptyList();
 int isLast(Position p, List l);
 void Delelte(ElementType x, List l);
 Position FindPrevious(ElementType x, List l); //if there is no key in a list, return last element
-Position Find(ElementType x, List l); //if there is not key in a lisa, return NULL
+Position Find(ElementType x, List l); //if there is no key in a list, return NULL
 void insert(ElementType x, Position p, List l);
 void DeleteList(List l);
 void PrintList(List l);
@@ -98,6 +98,10 @@ void DeleteList(List l)
 void PrintList(List l)
 {
 	Position p = l;
+	if(p->next == NULL) {
+		printf("your list is empty.\n");
+		return;
+	}
 	p = p->next;
 	while(p != NULL) {
 		printf("key: %d  ", p->element);
