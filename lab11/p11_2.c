@@ -90,66 +90,15 @@ int middle_partition(QuickSort q, int low, int high) {
 				i++;
 			if(q->array[j] > pivot_value)
 				j--;
+			if(q->array[i] == q->array[j])
+				i++;
 		}
 		else {
-			return i;
-		}
-	}
-	/*	
-	Fail	
-	while(1) {
-		while(i < high && q->array[++i] < pivot_value);
-		while(j > low && q->array[--j] > pivot_value);
-		if(i <= j) {
-			swap(&q->array[i], &q->array[j]);
-		}
-		else {
-			return i;
-		}
-	}
-	*/
-	/*
-	Fail
-	while(1) {
-		while(i < high && q->array[++i] <= pivot_value);
-		while(j > low && q->array[--j] >= pivot_value);
-		if(i < j) {
-			swap(&q->array[i], &q->array[j]);
-		} 
-		else {
-			if(pivot < j) {
-				swap(&q->array[i], &q->array[pivot]);
+			if(q->array[i] == pivot_value) 
 				return i;
-			}
-			else if(pivot > i) {
-				swap(&q->array[j], &q->array[pivot]);
-				return j;
-			}
-			return pivot;
+			return j;
 		}
 	}
-	*/
-	/*	
-	int i = low - 1;
-	int j = high + 1;
-	int pivot = (low + high) / 2;
-	swap(&q->array[high], &q->array[pivot]);
-	pivot = high;
-	printf("pivot value : %d\n", q->array[pivot]);
-	int pivot_value = q->array[pivot];
-	while(1) {
-		while(i < high && q->array[++i] <= pivot_value);
-		while(j > low && q->array[--j] >= pivot_value);
-		if(i < j) {
-			swap(&q->array[i], &q->array[j]);
-		} 
-		else {
-			swap(&q->array[i], &q->array[pivot]);
-			return i;
-		}
-	}
-	*/
-	
 }	
 
 int leftmost_partition(QuickSort q, int left, int right) {
